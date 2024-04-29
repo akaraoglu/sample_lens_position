@@ -93,39 +93,49 @@ Autofocus systems operate by receiving data from the lens and the sensor, proces
 Active autofocus systems determine the distance to the subject using techniques that involve projecting something (like infrared or ultrasonic signals) onto the subject and measuring how long it takes for the reflection to return.
 
 How It Works: Active AF systems emit energy (light or sound) towards the subject. They then calculate the distance based on the time it takes for the energy to bounce back or based on the angle of the returning energy.
+
 Advantages:
 Works well in low light and can achieve focus even in complete darkness.
 Less dependent on the contrast of the subject, making it effective in scenarios where passive systems might struggle.
+
 Disadvantages:
 The range is often limited, making it less effective for distant subjects.
 Can be less accurate than optical methods because the signal might not reflect directly back or might scatter, especially in complex environments.
+
 Typical Uses: Commonly found in video cameras and some compact digital cameras. It's also used in smartphones, particularly for video autofocus because of its robustness in diverse lighting conditions.
-Passive Autofocus Systems
+
+#### Passive Autofocus Systems
 Passive autofocus systems rely on the analysis of the image formed by the actual camera lens without emitting any type of signal towards the subject. This category includes both phase detection and contrast detection autofocus systems.
 
 How It Works:
 Phase Detection: Uses a special sensor to split incoming light into pairs, comparing them to determine focus. This method measures the phase of the light waves to quickly determine focus adjustment.
 Contrast Detection: Analyzes the contrast in the image captured by the main image sensor by shifting the lens and determining the point of highest contrast, which correlates to the sharpest focus.
+
 Advantages:
 Does not require emitting any signals, making it unobtrusive.
 Typically offers higher accuracy and finer focus, especially useful in high-resolution photography.
+
 Disadvantages:
 Contrast detection can be slower, especially in low light.
 Phase detection requires a certain amount of light and contrast to function effectively.
+
 Typical Uses: DSLRs predominantly use phase detection, while mirrorless cameras and compact cameras often use contrast detection.
-Hybrid Autofocus Systems
+
+#### Hybrid Autofocus Systems
 Hybrid autofocus systems combine elements of both active and passive systems, often integrating phase and contrast detection methods to optimize both speed and accuracy.
 
 How It Works: Utilizes the speed of phase detection to quickly get near focus and then employs contrast detection to fine-tune the focus for precision.
+
 Advantages:
 Offers fast autofocus with high accuracy.
 Effective in a wide range of lighting conditions.
+
 Disadvantages:
 More complex and potentially more expensive to implement.
 Can still struggle in extreme conditions such as very low light or very fast-moving subjects.
+
 Typical Uses: Many modern mirrorless cameras, high-end compact cameras, and advanced smartphones use hybrid autofocus systems to leverage the strengths of both active and passive methods for superior performance.
 Each type of autofocus system has its own set of strengths and weaknesses, making them suitable for different applications and conditions. The choice between active, passive, and hybrid autofocus systems depends on factors like lighting conditions, subject movement, and the specific needs of the photographer or videographer.
-
 
 ## 7) Focus Bracketing 
 Focus bracketing is an advanced photography technique used to extend the depth of field in images. It involves taking several photographs of the same scene at different focus distances and combining them to create a single image with greater sharpness throughout. To fully understand focus bracketing, we must first grasp the concept of the Circle of Confusion (CoC).
@@ -135,12 +145,15 @@ In focus bracketing, a photographer takes multiple shots of the same scene, adju
 The process involves determining the nearest and farthest points in the scene that need to be in focus. By using the DoF formula, one can calculate the necessary number of shots and the focus adjustment needed between each shot to ensure every part of the scene is sharp.
 
 ## Conclusion
+Finding the focus location is usually overlooked since it is found by hand optimized algorithms. There are many subjects that the developers might not take the CoC and DoF into account. 
+First of all, the final image resolution has direct impact over the final lens position. If the image resolution is lower, we can use more coarse lens position for focus distance. 
+Secondly, during a contrast based hill climbing algorithm, deciding where to go as a focus distance is very important in speed and accuracy. With the proper calculations explained in this docuement, it is extemely easy to understand and tune a focusing algorithm. 
+Third, the same is also valid for using active autofocus systems. We can calculate the accuracy of the active autofocus system, and add a passive fine seach autofocu over it if necessery. This decision and lens locations can be calculated easily with the formulas we have proposed.
+As fourth improvement, we can also calculate the focus bracketing lens positions from the given set of parameters. 
 Focus bracketing is a powerful technique that requires an understanding of both the Circle of Confusion and Depth of Field. By mastering these concepts and applying the correct formulas, photographers can create images with unprecedented depth and sharpness. This method is particularly useful in situations where traditional photography might fail to capture the complexity of a scene in sharp detail.
 
 # 
 # 
-# 
-
 # Circle of Confusion (CoC) Detailed in Digital Imaging
 ## What is Circle of Confusion?
 In photography and optics, the Circle of Confusion (CoC) refers to the size of a blurred spot which results when a point source of light is not perfectly focused on a sensor or film plane. In the context of digital imaging, it's particularly significant because it helps define the limits of depth of field and overall image sharpness.
@@ -169,14 +182,3 @@ The industry standard of tuning the Circle of Confusion to around 2 pixels is ba
 ## A schematic diagram of camera system
 
 ![image](https://github.com/akaraoglu/focus_bracketing/assets/32932292/b08f9e4a-d27a-4df8-b83f-c17c02649ee2)
-
-![image](https://github.com/akaraoglu/focus_bracketing/assets/32932292/e1853512-8297-48da-9470-e1391eed1f53)
-
-
-**Hyperfocal distance:** The closest distance at which a lens can be focused while keeping objects at infinity acceptably sharp. When the lens is focused at this distance, all objects at distances from half of the hyperfocal distance out to infinity will be acceptably sharp.
-**Hyperfocal near limit:** The distance between the camera and the first element that is considered to be acceptably sharp when focusing at the hyperfocal distance. 
-**Depth of field (DOF):** The distance between the farthest and nearest points which are in acceptable focus. This can also be identified as the zone of acceptable sharpness in front of and behind the subject to which the lens is focused on. 
-**DOF near limit:** The distance between the camera and the first element that is considered to be acceptably sharp.
-**DOF far limit:** The distance between the camera and the furthest element that is considered to be acceptably sharp.
-**Depth of Field (DOF) In Front:** Distance between the DoF Near Limit and the focus plane.
-**Depth of Field (DOF) Behind:** Distance between the focus plane and the DoF Far Limit.
