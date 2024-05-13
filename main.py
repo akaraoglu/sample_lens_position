@@ -1,9 +1,11 @@
 # MIT License
-# Copyright (c) 2023 [Your name or your organization]
+# Copyright (c) 2024 Ali Karaoglu
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 # The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-# All measurements must be in the same units, millimeters, feet, or inches.			
+# All measurements must be in the same units, millimeters, feet, or inches.	
+# In this document, the distances are in millimeters.
+# Abbreviations 		
 # F 	lens focal length	
 # N 	aperture f-stop
 # c 	circle of confusion	
@@ -38,7 +40,7 @@ def get_focus_distance_from_dof(dof, F, H, is_near=True):
     assert dof > F, "Depth of field limit must be greater than the focal length."
     if is_near:
         return (dof * (H - 2 * F)) / (H - F - dof)
-    return (dof * (H - 2 * F)) / (H - F + dof)
+    return (dof * (H)) / (H - F + dof)
 
 def get_lens_distance_from_focus_distance(S, F):
     """Calculate the lens distance for a given focus distance."""
@@ -72,7 +74,10 @@ def focus_bracketing_all_in_focus_lens_positions(F, N, c, S_near_limit, S_far_li
     # Start with the nearest limit and calculate initial far DoF limit
     focus_distance_curr = S_near_limit
     dof_f = get_dof_far(F, H, focus_distance_curr)
+    dof_n = get_dof_near(F, H, focus_distance_curr)
+
     focus_distance_curr = get_focus_distance_from_dof(dof_f, F, H, is_near=True)
+    focus_distance_curr_far = get_focus_distance_from_dof(dof_n, F, H, is_near=False)
     lens_distance_curr = get_lens_distance_from_focus_distance(focus_distance_curr, F)
 
     print("Initial lens settings:")
@@ -103,9 +108,9 @@ def focus_bracketing_all_in_focus_lens_positions(F, N, c, S_near_limit, S_far_li
         count += 1
 
 # Main execution block
-F = 3.992  # focal length in mm
-N = 1.6    # aperture f-stop
-c = 0.0011 # circle of confusion in mm
+F = 25.0  # focal length in mm
+N = 4.6    # aperture f-stop
+c = 0.02 # circle of confusion in mm
 H = get_hyperfocal_distance(F, N, c)  # Theoretical furthest focus distance
 
 S_near_limit = 250  # Practical nearest focus distance in mm
