@@ -246,7 +246,7 @@ First we assume the initial parameters as:
     \item Focal Length (\( F\)): 25.000 mm,
     \item Aperture (\( N\)): f/4.6
     \item Circle of Confusion (\( c\)): 0.0200 mm
-    \item Practical Nearest Focus Distance (\( S_near_limit\) ): 250 mm
+    \item Practical Nearest Focus Distance (\( S_n\) ): 250 mm
 \end{itemize}
 
 Using these parameters and the formulas for Hyperfocal distance \ref{ssec:hyperfocal} and thin-lens \ref{sec:thinlens} equations, we obtain: 
@@ -285,7 +285,7 @@ After the initial calculations, the sample lens positions can be obtained in a l
 \subsection{Conclusion}
 \label{sec:conclusion}
 
-Understanding the physical properties of a camera module significantly impacts focusing algorithms. Our proposed method comprehensively considers these properties, allowing for the straightforward calculation of sample lens positions using the provided formulas. The benefits of this algorithm begin with its use of the final image resolution, which directly influences the optimal lens position. For lower resolutions, a coarser lens position suffices for accurate focus.
+Understanding the physical properties of a camera module significantly impacts focusing algorithms. The proposed method in this paper comprehensively considers these properties, allowing for the straightforward calculation of sample lens positions using the provided formulas. The benefits of this algorithm begin with its use of the final image resolution, which directly influences the optimal lens position. For lower resolutions, a coarser lens position suffices for accurate focus.
 
 Furthermore, the speed and accuracy of determining focus distances are crucial in a contrast-based hill-climbing algorithm. The calculations detailed in this document simplify the tuning and understanding of a focusing algorithm, enhancing both elements. Additionally, the accuracy of active autofocus (AF) systems is measured and calibrated. Given their limitations with high-resolution images, we have incorporated a passive fine-search autofocus algorithm to improve precision.
 
